@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:allowBackup="false"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@android:style/Theme.DeviceDefault.Light">
+
+        <!-- ===== LSPosed / Xposed 模块声明 ===== -->
+        <meta-data
+            android:name="xposedmodule"
+            android:value="true" />
+        <meta-data
+            android:name="xposeddescription"
+            android:value="@string/xposed_description" />
+        <meta-data
+            android:name="xposedminversion"
+            android:value="93" />
+        <!-- 允许读取模块自己的 SharedPreferences（备用通道） -->
+        <meta-data
+            android:name="xposedsharedprefs"
+            android:value="true" />
+        <!-- 默认作用域 -->
+        <meta-data
+            android:name="xposedscope"
+            android:resource="@array/xposedscope" />
+
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 模块配置读取通道：被 hook 的 B 站进程通过 ContentResolver.call() 读取开关状态 -->
+        <provider
+            android:name=".ConfigProvider"
+            android:authorities="com.bili.splashkiller.config"
+            android:enabled="true"
+            android:exported="true"
+            android:grantUriPermissions="false" />
+
+    </application>
+
+</manifest>

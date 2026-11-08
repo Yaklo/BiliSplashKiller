@@ -1,0 +1,21 @@
+# ---- Gradle / Android ----
+.gradle/
+build/
+local.properties
+captures/
+.externalNativeBuild/
+.cxx/
+*.iml
+.idea/
+.DS_Store
+
+# ---- 构建产物（APK 不入库，发版时上传到 Releases）----
+*.apk
+*.aab
+*.keystore
+*.jks
+.build/
+dist/
+
+# ---- 日志 ----
+*.log

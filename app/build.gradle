@@ -1,0 +1,43 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.bili.splashkiller'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId 'com.bili.splashkiller'
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName '1.0'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
+    }
+}
+
+dependencies {
+    // Xposed API（仅编译期需要，不打进 APK）
+    compileOnly 'de.robv.android.xposed:api:82'
+    // 如果 https://api.xposed.info/ 拉不到，把 api-82.jar 丢进 app/libs 后改用下面这行：
+    // compileOnly fileTree(dir: 'libs', include: ['*.jar'])
+}
